@@ -51,6 +51,7 @@ class BeritaResource extends Resource
                 RichEditor::make('content')
                 ->columnSpanFull()
                 ->required(),
+                Forms\Components\Toggle::make('is_featured')
             ]);
     }
 
@@ -63,7 +64,7 @@ class BeritaResource extends Resource
                 TextColumn::make('title'),
                 TextColumn::make('slug'),
                 ImageColumn::make('thumbnail'),
-            ])
+                Tables\Columns\ToggleColumn::make('is_featured')            ])
             ->filters([
                 SelectFilter::make('author_id')
                     ->relationship('author', 'name')
