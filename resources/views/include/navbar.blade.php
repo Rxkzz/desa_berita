@@ -4,7 +4,7 @@
         <!-- Logo dan Menu -->
         <div class="flex items-center justify-between w-full lg:w-auto">
           <!-- Logo -->
-          <a href="index.html">
+          <a href="{{ route('landing') }} ">  
             <div class="flex items-center gap-2">
               <img src="{{ asset('assets/img/logo.png')}}" alt="Logo" class="w-8 lg:w-10">
               <p class="text-lg lg:text-xl font-bold">Moco</p>
@@ -20,9 +20,11 @@
           class="hidden lg:flex flex-col lg:flex-row lg:items-center lg:gap-10 w-full lg:w-auto mt-5 lg:mt-0">
           <ul
             class="flex flex-col lg:flex-row items-start lg:items-center gap-4 font-medium text-base w-full lg:w-auto">
-            <li><a href="index.html" class="text-primary hover:text-gray-600">Beranda</a></li>
+            <li>
+              <a href="{{ route('landing') }}" class="{{ request()->is('/') ? 'text-primary' : '' }} hover:text-gray-600">Beranda</a>
+            </li>
             @foreach (\App\Models\kategoriBerita::all() as $kategori)
-            <li><a href="gayahidup.html" class="hover:text-primary">{{$kategori->title}}</a></li>
+            <li><a href="{{ route('berita.kategori', $kategori->slug) }}" class="hover:text-primary">{{$kategori->title}}</a></li>
             @endforeach
           </ul>
         </div>

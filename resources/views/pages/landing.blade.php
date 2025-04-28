@@ -8,7 +8,7 @@
       <div class="swiper-wrapper">
         @foreach ($banners as $banner)
         <div class="swiper-slide">
-          <a href="detail-MotoGp.html" class="block">
+          <a href="{{ route('berita.show', $banner->berita->slug) }}" class="block">
             <div
               class="relative flex flex-col gap-1 justify-end p-3 h-72 rounded-xl bg-cover bg-center overflow-hidden"
               style="background-image: url('{{ asset('storage/' . $banner->berita ->thumbnail) }}');">
@@ -47,7 +47,7 @@
       </div>
       <div class="grid sm:grid-cols-1 gap-5 lg:grid-cols-4">
         @foreach ($featureds as $featured)
-        <a href="detail-MotoGp.html">
+        <a href="{{ route('berita.show', $featured->slug) }}">
           <div
             class="border border-slate-200 p-3 rounded-xl hover:border-primary hover:cursor-pointer transition duration-300 ease-in-out" style="height: 100%">
             <div class="bg-primary text-white rounded-full w-fit px-5 py-1 font-normal ml-2 mt-2 text-sm absolute">
@@ -74,30 +74,31 @@
         <!-- Berita Utama -->
         <div
           class="relative col-span-7 lg:row-span-3 border border-slate-200 p-3 rounded-xl hover:border-primary hover:cursor-pointer">
-          <a href="detail-MotoGp.html">
+          <a href="{{ route('berita.show', $beritas[0]->slug) }}">
             <div class="bg-primary text-white rounded-full w-fit px-4 py-1 font-normal ml-5 mt-5 absolute">Pariwisata
             {{ $beritas[0]->kategoriBerita->title }}    
             </div>
             <img src="{{ asset('storage/' . $beritas[0]->thumbnail) }}" alt="berita1" class="rounded-2xl">
             <p class="font-bold text-xl mt-3"> {{ $beritas[0]->title }} </p>
             <p class="text-slate-400 text-base mt-1">{{ Str::limit(strip_tags($beritas[0]->content), 100) }}</p>
-            <p class="text-slate-400 text-base mt-1">23 Januari 2024</p>
+            <p class="text-slate-400">{{ \Carbon\Carbon::parse($beritas[0]->created_at)->format('d F Y') }}</p>
           </a>
         </div>
 
         <!-- Berita 1 -->
-        <a href="detail-MotoGp.html"
+         @foreach ($beritas->skip(1) as $berita)
+         <a href="{{ route('berita.show', $berita->slug) }}"
           class="relative col-span-5 flex flex-col h-fit md:flex-row gap-3 border border-slate-200 p-3 rounded-xl hover:border-primary hover:cursor-pointer">
           <div class="bg-primary text-white rounded-full w-fit px-4 py-1 font-normal ml-2 mt-2 absolute text-sm">
-            Olahraga</div>
-          <img src="img/Berita-Motor.png" alt="berita2" class="rounded-xl w-full md:max-h-48">
+          {{ $berita->kategoriBerita->title }}    </div>
+          <img src="{{ asset('storage/' . $berita->thumbnail) }}" alt="berita2" class="rounded-xl" style="width: 250px; object-fit: cover;">
           <div class="mt-2 md:mt-0">
-            <p class="font-semibold text-lg">MotoGp 2025 Akan Diadakan Di Sirkuit Mandalika</p>
-            <p class="text-slate-400 mt-3 text-sm font-normal">Sekitar 59 persen pencari kerja mengaku pernah
-              di-ghosting oleh
-              perekrut dan tidak mendapat respons apapun setelah mengirim lamaran...</p>
+            <p class="font-semibold text-lg">{{ $berita->title }}</p>
+            <p class="text-slate-400 mt-3 text-sm font-normal">{{ Str::limit(strip_tags($berita->content), 100) }}</p>
           </div>
         </a>
+         @endforeach
+
 
       </div>
 
@@ -116,53 +117,18 @@
       </div>
       <div class="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         <!-- Author 1 -->
-        <a href="author.html">
+         @foreach ($authors as $author)
+         <a href="{{ route('author.show', $author->username) }}">
           <div
             class="flex flex-col items-center border border-slate-200 px-4 py-8 rounded-2xl hover:border-primary hover:cursor-pointer">
-            <img src="img/profile.png" alt="" class="rounded-full w-24 h-24">
-            <p class="font-bold text-xl mt-4">Queen Fayola S</p>
-            <p class="text-slate-400">5 Berita</p>
+            <img src="{{ asset('storage/' . $author->avatar) }}" alt="" class="rounded-full w-24 h-24">
+            <p class="font-bold text-xl mt-4">{{ $author->name }}</p>
+            <p class="text-slate-400">{{ $author->berita->count() }} Berita</p>
           </div>
         </a>
-        <!-- Author 2 -->
-        <a href="author.html">
-          <div
-            class="flex flex-col items-center border border-slate-200 px-4 py-8 rounded-2xl hover:border-primary hover:cursor-pointer">
-            <img src="img/profile.png" alt="" class="rounded-full w-24 h-24">
-            <p class="font-bold text-xl mt-4">Queen Fayola S</p>
-            <p class="text-slate-400">5 Berita</p>
-          </div>
-        </a>
-
-        <!-- Author 3 -->
-        <a href="author.html">
-          <div
-            class="flex flex-col items-center border border-slate-200 px-4 py-8 rounded-2xl hover:border-primary hover:cursor-pointer">
-            <img src="img/profile.png" alt="" class="rounded-full w-24 h-24">
-            <p class="font-bold text-xl mt-4">Queen Fayola S</p>
-            <p class="text-slate-400">5 Berita</p>
-          </div>
-        </a>
-
-        <!-- Author 4 -->
-        <a href="author.html">
-          <div
-            class="flex flex-col items-center border border-slate-200 px-4 py-8 rounded-2xl hover:border-primary hover:cursor-pointer">
-            <img src="img/profile.png" alt="" class="rounded-full w-24 h-24">
-            <p class="font-bold text-xl mt-4">Queen Fayola S</p>
-            <p class="text-slate-400">5 Berita</p>
-          </div>
-        </a>
-
-        <!-- Author 5 -->
-        <a href="author.html">
-          <div
-            class="flex flex-col items-center border border-slate-200 px-4 py-8 rounded-2xl hover:border-primary hover:cursor-pointer">
-            <img src="img/profile.png" alt="" class="rounded-full w-24 h-24">
-            <p class="font-bold text-xl mt-4">Queen Fayola S</p>
-            <p class="text-slate-400">5 Berita</p>
-          </div>
-        </a>
+         @endforeach
+     
+       
 
       </div>
     </div>
@@ -175,46 +141,20 @@
         </div>
       </div>
       <div class="grid sm:grid-cols-1 gap-5 lg:grid-cols-4">
-        <a href="detail-MotoGp.html">
+        @foreach ($beritas as $choice)
+        <a href="{{ route('berita.show', $choice->slug) }}">
           <div
-            class="border border-slate-200 p-3 rounded-xl hover:border-primary hover:cursor-pointer transition duration-300 ease-in-out">
+            class="border border-slate-200 p-3 rounded-xl hover:border-primary hover:cursor-pointer transition duration-300 ease-in-out" style="height: 100%">
             <div class="bg-primary text-white rounded-full w-fit px-5 py-1 font-normal ml-2 mt-2 text-sm absolute">
-              Pariwisata</div>
-            <img src="img/Berita-Liburan.png" alt="" class="w-full rounded-xl mb-3">
-            <p class="font-bold text-base mb-1">Spot Liburan Asyik Di Banyumas Yang Bisa Kamu Kunjungi</p>
-            <p class="text-slate-400">22 Januari 2024</p>
+              {{ $choice->kategoriBerita->title }}</div>
+            <img src="{{ asset('storage/' . $choice->thumbnail) }}" alt="" class="w-full rounded-xl mb-3" style="height: 200px; object-fit; cover;">
+            <p class="font-bold text-base mb-1">{{ $choice->title }}</p>
+            <p class="text-slate-400">{{ \Carbon\Carbon::parse($choice->created_at)->format('d F Y') }}</p>
           </div>
         </a>
-        <a href="detail-MotoGp.html">
-          <div
-            class="border border-slate-200 p-3 rounded-xl hover:border-primary hover:cursor-pointer transition duration-300 ease-in-out">
-            <div class="bg-primary text-white rounded-full w-fit px-5 py-1 font-normal ml-2 mt-2 text-sm absolute">
-              Politik</div>
-            <img src="img/Berita-Demo.png" alt="" class="w-full rounded-xl mb-3">
-            <p class="font-bold text-base mb-1">Demo Terjadi Di Banyumas <br>Dikarenakan Kenaikan BBM</p>
-            <p class="text-slate-400">22 Januari 2024</p>
-          </div>
-        </a>
-        <a href="detail-MotoGp.html">
-          <div
-            class="border border-slate-200 p-3 rounded-xl hover:border-primary hover:cursor-pointer transition duration-300 ease-in-out">
-            <div class="bg-primary text-white rounded-full w-fit px-4 py-1 font-normal ml-2 mt-2 text-sm absolute">
-              Olahraga</div>
-            <img src="img/Berita-Motor.png" alt="" class="w-full rounded-xl mb-3">
-            <p class="font-bold text-base mb-1">MotoGp 2025 Akan Diadakan Di <br>Sirkuit Mandalika</p>
-            <p class="text-slate-400">22 Januari 2024</p>
-          </div>
-        </a>
-        <a href="detail-MotoGp.html">
-          <div
-            class="border border-slate-200 p-3 rounded-xl hover:border-primary hover:cursor-pointer transition duration-300 ease-in-out">
-            <div class="bg-primary text-white rounded-full w-fit px-4 py-1 font-normal ml-2 mt-2 text-sm absolute">
-              Gaya Hidup</div>
-            <img src="img/Berita-Golf.png" alt="" class="w-full rounded-xl mb-3">
-            <p class="font-bold text-base mb-1">Manfaat Bermain Golf Untuk <br>Menumbuhkan Koneksi</p>
-            <p class="text-slate-400">22 Januari 2024</p>
-          </div>
-        </a>
+        @endforeach
+       
+     
       </div>
     </div>
 @endsection

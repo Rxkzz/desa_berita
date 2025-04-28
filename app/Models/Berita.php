@@ -22,4 +22,9 @@ class Berita extends Model
     {
         return $this->hasOne(Banner::class);
     }
+
+    public function kategori()
+    {
+        $kategori = kategoriBerita::where('slug', $slug)->first();
+    }
 }
