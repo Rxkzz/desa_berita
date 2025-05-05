@@ -18,7 +18,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
         'name',
         'email',
         'password',
-        'avatar_url',  // Make sure this is included
+        'avatar_url',  
     ];
     
     // Update the avatar URL getter
@@ -29,19 +29,15 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
      */
     public function getFilamentAvatarUrl(): ?string
     {
-        // Asumsikan plugin menyimpan path di kolom 'avatar_url'
-        // dan menggunakan disk 'public'
+       
         if ($this->avatar_url) {
-            // Mengembalikan URL publik ke file avatar
+          
             return Storage::disk('public')->url($this->avatar_url);
         }
 
-        // Kembalikan null jika tidak ada avatar_url,
-        // Filament akan menampilkan avatar default/inisial
+     
         return null;
 
-        // Atau, jika Anda ingin fallback ke Gravatar:
-        // return $this->avatar_url ? Storage::disk('public')->url($this->avatar_url) : $this->getGravatarUrl();
     }
 
     protected $hidden = [
@@ -55,7 +51,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
     ];
 
 
-    // Relasi ke berita
+    
     public function beritas()
     {
         return $this->hasMany(Berita::class, 'author_id');
