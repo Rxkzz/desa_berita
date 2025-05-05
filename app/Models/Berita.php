@@ -13,10 +13,16 @@ class Berita extends Model
         'slug',
         'thumbnail',
         'content',
-        'is_featured'
+        'is_featured',
+        'view_count' 
     ];
-
-    // Relasi author ke User
+    
+    
+    public function incrementViewCount()
+    {
+        $this->increment('view_count');
+        return $this;
+    }
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');
@@ -32,9 +38,7 @@ class Berita extends Model
         return $this->hasOne(Banner::class);
     }
 
-    // Hapus fungsi kategori() yang tidak digunakan/keliru
-
-    // Scope untuk filter berita sesuai role user
+    
     public function scopeAccessibleByUser($query, $user)
     {
         if (in_array($user->role, ['admin', 'super_admin', 'superadmin'])) {
@@ -42,4 +46,5 @@ class Berita extends Model
         }
         return $query->where('author_id', $user->id);
     }
+    
 }

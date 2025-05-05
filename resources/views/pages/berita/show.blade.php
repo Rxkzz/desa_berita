@@ -11,10 +11,13 @@
     <div class="flex flex-col lg:flex-row w-full gap-10">
       <!-- Berita Utama -->
       <div class="lg:w-8/12">
-        <img src="{{ asset('storage/' . $berita->thumbnail) }}" alt="MotoGP" class="w-full max-h-96 rounded-xl object-cover"> 
+        <img src="{{ asset('storage/' . $berita->thumbnail) }}" alt="" class="w-full max-h-96 rounded-xl object-cover"> 
         <div class="mt-6 text-base lg:text-xl leading-relaxed text-justify">
           {!! $berita->content !!}
         </div>
+        <div class="views-count">
+    <i class="fas fa-eye"></i> {{ $berita->view_count }} views
+</div>
       </div>
       <!-- Berita Terbaru -->
       <div class="lg:w-4/12 flex flex-col gap-10">
@@ -60,4 +63,6 @@
       </div>
     </a>
   </div>
+  
 @endsection
+

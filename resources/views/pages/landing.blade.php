@@ -19,7 +19,7 @@
                 <div class="bg-primary text-white text-xs rounded-lg w-fit px-3 py-1 font-normal mt-3">{{ $banner->berita->kategoriBerita->title }}</div>
                 <p class="text-3xl font-semibold text-white mt-1">{{ $banner->berita->title }}</p>
                 <div class="flex items-center gap-1 mt-1">
-                  <img src="{{ asset('storage/' . $banner->berita->author->avatar_url) }}" alt="" class="w-5 h-5 rounded-full">
+                  <img src="{{ asset('storage/' . $banner->berita->author->avatar) }}" alt="" class="w-5 h-5 rounded-full">
                   <p class="text-white text-xs">{{ $banner->berita->author->name }}</p>
                 </div>
               </div>
