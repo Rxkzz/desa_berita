@@ -6,11 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Berita extends Model
 {
-    protected $fillable = ['author_id', 'kategori_berita_id', 'title', 'slug', 'thumbnail', 'content', 'is_featured'];
+    protected $fillable = [
+        'author_id',
+        'kategori_berita_id',
+        'title',
+        'slug',
+        'thumbnail',
+        'content',
+        'is_featured'
+    ];
 
+    // Relasi author ke User
     public function author()
     {
-        return $this->belongsTo(Author::class);
+        return $this->belongsTo(User::class, 'author_id');
     }
 
     public function kategoriBerita()
@@ -23,8 +32,14 @@ class Berita extends Model
         return $this->hasOne(Banner::class);
     }
 
-    public function kategori()
+    // Hapus fungsi kategori() yang tidak digunakan/keliru
+
+    // Scope untuk filter berita sesuai role user
+    public function scopeAccessibleByUser($query, $user)
     {
-        $kategori = kategoriBerita::where('slug', $slug)->first();
+        if (in_array($user->role, ['admin', 'super_admin', 'superadmin'])) {
+            return $query;
+        }
+        return $query->where('author_id', $user->id);
     }
 }

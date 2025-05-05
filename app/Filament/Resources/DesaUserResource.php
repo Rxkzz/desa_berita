@@ -34,7 +34,6 @@ class DesaUserResource extends Resource
                     ->required(fn (string $context): bool => $context === 'create')
                     ->maxLength(255),
                 Forms\Components\Select::make('roles')
-                    ->multiple()
                     ->relationship('roles', 'name')
                     ->preload()
                     ->required(),

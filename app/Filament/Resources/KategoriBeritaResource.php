@@ -24,7 +24,7 @@ class KategoriBeritaResource extends Resource
     protected static ?string $model = KategoriBerita::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
-
+    protected static ?string $navigationGroup = 'Berita';
     public static function form(Form $form): Form
     {
         return $form

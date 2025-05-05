@@ -23,4 +23,9 @@ public function kategori($slug)
     return view('pages.berita.kategori', compact('kategori')); 
 }
 
+    public function index()
+    {
+        $beritas = Berita::accessibleByUser(auth()->user())->get();
+        return view('pages.berita.index', compact('beritas'));
+    }
 }

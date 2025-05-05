@@ -16,6 +16,8 @@ class User extends Authenticatable implements FilamentUser
         'name',
         'email',
         'password',
+        // Tambahkan 'role' jika sudah ada di tabel users
+        // 'role',
     ];
 
     protected $hidden = [
@@ -27,6 +29,12 @@ class User extends Authenticatable implements FilamentUser
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // Relasi ke berita
+    public function beritas()
+    {
+        return $this->hasMany(Berita::class, 'author_id');
+    }
 
     public function canAccessPanel(\Filament\Panel $panel): bool
     {

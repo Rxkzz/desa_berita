@@ -11,11 +11,10 @@
     <div class="flex flex-col lg:flex-row w-full gap-10">
       <!-- Berita Utama -->
       <div class="lg:w-8/12">
-        <img src="{{ asset('storage/' . $berita->thumbnail) }}" alt="MotoGP" class="w-full max-h-96 rounded-xl object-cover">
-        <p class="font-bold text-lg lg:text-xl mt-6">{{ $berita->title }}</p>
-        <p class="mt-6 text-base lg:text-xl leading-relaxed text-justify">
-          {{ strip_tags($berita->content) }}
-        </p>
+        <img src="{{ asset('storage/' . $berita->thumbnail) }}" alt="MotoGP" class="w-full max-h-96 rounded-xl object-cover"> 
+        <div class="mt-6 text-base lg:text-xl leading-relaxed text-justify">
+          {!! $berita->content !!}
+        </div>
       </div>
       <!-- Berita Terbaru -->
       <div class="lg:w-4/12 flex flex-col gap-10">
@@ -24,7 +23,7 @@
           <!-- Berita Card -->
           <div class="gap-5 flex flex-col">
             @foreach ($newest as $berita)
-            <a href="detail-MotoGp.html">
+            <a href="{{ route('berita.show', $berita->slug) }}">
               <div class="flex gap-3 border border-slate-300 hover:border-primary p-3 rounded-xl">
                 <div class="bg-primary text-white rounded-full w-fit px-5 py-1 ml-2 mt-2 font-normal text-xs absolute">
                   {{ $berita->kategoriBerita->title }}
