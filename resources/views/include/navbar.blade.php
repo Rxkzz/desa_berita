@@ -1,5 +1,3 @@
-
-
 <!-- Nav -->
 <nav class="sticky top-0 z-50 flex justify-between items-center py-5 px-4 lg:px-14 bg-white shadow-sm">
   <div class="flex items-center gap-4">

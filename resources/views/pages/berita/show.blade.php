@@ -50,7 +50,7 @@
     <a href="author.html">
       <div
         class="flex flex-col lg:flex-row gap-4 items-center border border-slate-300 rounded-xl p-6 lg:p-8 hover:border-primary transition">
-        <img src="{{ asset('storage/' . $berita->author->avatar) }}" alt="profile" class="rounded-full w-24 lg:w-28 border-2 border-primary">
+        <img src="{{ asset('storage/' . $berita->author->avatar_url) }}" alt="profile" class="rounded-full w-24 lg:w-28 border-2 border-primary">
         <div class="text-center lg:text-left">
           <p class="font-bold text-lg lg:text-xl">{{ $berita->author->name }}</p>
           <p class="text-sm lg:text-base leading-relaxed">

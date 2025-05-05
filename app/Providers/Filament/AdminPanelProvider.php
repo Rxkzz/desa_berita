@@ -18,6 +18,9 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
+use Filament\Navigation\MenuItem;
+use Joaopaulolndev\FilamentEditProfile\Pages\EditProfilePage;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -54,9 +57,28 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
+                FilamentEditProfilePlugin::make()
+                ->setTitle('My Profile')
+                ->setNavigationLabel('My Profile')
+                ->setIcon('heroicon-o-user')
+                ->shouldShowDeleteAccountForm(false)
+                ->shouldShowAvatarForm(
+                    value: true,
+                    directory: 'avatars', 
+                    rules: 'mimes:jpeg,png|max:1024'
+                )
+                ,
             ])
+            ->userMenuItems([
+                'profile' => MenuItem::make()
+                    ->label(fn() => auth()->user()->name)
+                    ->url(fn (): string => EditProfilePage::getUrl())
+                    ->icon('heroicon-m-user-circle')
+            ])
+          
             ->authMiddleware([
                 Authenticate::class,
             ]);
+            
     }
 }
