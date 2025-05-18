@@ -120,6 +120,11 @@ class BeritaResource extends Resource
             ]);
     }
 
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->where('author_id', Auth::id());
+    }
+
     public static function getRelations(): array
     {
         return [

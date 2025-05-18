@@ -14,7 +14,8 @@ class LandingController extends Controller
         $featureds = Berita::where('is_featured', true)->get();
         $beritas = Berita::orderBy('created_at', 'desc')->get()->take(4);
         $authors = Author::take(5)->get();
-        // dd($banners);
-        return view('pages.landing', compact('banners', 'featureds', 'beritas', 'authors'));
+        $mostViewed = Berita::orderBy('view_count', 'desc')->take(4)->get();
+        
+        return view('pages.landing', compact('banners', 'featureds', 'beritas', 'authors', 'mostViewed'));
     }
 }

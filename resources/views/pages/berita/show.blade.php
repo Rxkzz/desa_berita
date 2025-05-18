@@ -5,7 +5,7 @@
 @section('content')
  <!-- Detail Berita -->
  <div class="flex flex-col px-4 lg:px-14 mt-10">
-    <div class="font-bold text-xl lg:text-2xl mb-6 text-center lg:text-left">
+    <div class="font-bold text-xl lg:text-2xl mb-6 text-left lg:text-left">
       <p>{{ $berita->title }}</p>
     </div>
     <div class="flex flex-col lg:flex-row w-full gap-10">
@@ -15,9 +15,9 @@
         <div class="mt-6 text-base lg:text-xl leading-relaxed text-justify">
           {!! $berita->content !!}
         </div>
-        <div class="views-count">
-    <i class="fas fa-eye"></i> {{ $berita->view_count }} views
-</div>
+        <div class="views-count flex items-center gap-1 text-slate-400">
+            <img src="{{ asset('assets/img/view.png') }}" alt="views" class="w-4 h-4"> {{ $berita->view_count }} 
+        </div>
       </div>
       <!-- Berita Terbaru -->
       <div class="lg:w-4/12 flex flex-col gap-10">
@@ -50,7 +50,7 @@
   <!-- Author Section -->
   <div class="flex flex-col gap-4 mb-10 p-4 lg:p-10 lg:px-14 w-full lg:w-2/3">
     <p class="font-semibold text-xl lg:text-2xl mb-2">Author</p>
-    <a href="author.html">
+    <a href="#">
       <div
         class="flex flex-col lg:flex-row gap-4 items-center border border-slate-300 rounded-xl p-6 lg:p-8 hover:border-primary transition">
         <img src="{{ asset('storage/' . $berita->author->avatar_url) }}" alt="profile" class="rounded-full w-24 lg:w-28 border-2 border-primary">

@@ -16,7 +16,7 @@ class BeritaUnggulan extends Model
         });
     }
 
-    // Define relationships as needed, for example:
+ 
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');

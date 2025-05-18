@@ -1,6 +1,6 @@
 const swiper = new Swiper('.mySwiper', {
-  slidesPerView: 1.5,
-  spaceBetween: 20,
+  slidesPerView: 1,
+  spaceBetween: 0,
   centeredSlides: true,
   loop: true,
   loopedSlides: 3,
@@ -13,14 +13,18 @@ const swiper = new Swiper('.mySwiper', {
     el: '.swiper-pagination',
     clickable: true,
   },
+  autoplay: {
+    delay: 5000, // 5000 milliseconds = 5 seconds
+    disableOnInteraction: false, // Continue autoplay after user interactions
+  },
   breakpoints: {
     0: {
-      slidesPerView: 1.2,
-      spaceBetween: 10,
+      slidesPerView: 1,
+      spaceBetween: 0,
     },
     768: {
-      slidesPerView: 2.5,
-      spaceBetween: 20,
+      slidesPerView: 1,
+      spaceBetween: 0,
     },
   },
   on: {
